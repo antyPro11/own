@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML with Script</title>
+</head>
+<body>
+
+<span id="result" style= "color:blue;font-size:50px"></span>
+
+    <script>
+        function getFormattedDateMMDDYYYY() {
+		const today = new Date();
+		const month = String(today.getMonth() + 1).padStart(2, '0'); // 月份从0开始，所以需要加1，并确保两位数
+		const day = String(today.getDate()).padStart(2, '0'); // 确保日期是两位数
+		const year = today.getFullYear();
+
+		return `${month}/${day}/${year}`;
+	}
+	
+	const today = getFormattedDateMMDDYYYY();
+	
+	const startDay = "2024-09-01";
+	
+	function calculateDaysBetweenDates(dateString1, dateString2) {
+		// 将日期字符串转换为日期对象
+		const date1 = new Date(dateString1);
+		const date2 = new Date(dateString2);
+
+		// 计算两个日期之间的毫秒数差
+		const diffTime = Math.abs(date2.getTime() - date1.getTime());
+
+		// 将毫秒数差转换为天数
+		const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+		return diffDays;
+	}
+
+
+	const daysBetween = calculateDaysBetweenDates(startDay, today);
+	
+	const mod = daysBetween % 2;
+	
+	const result = mod === 0 ? 'ad':'d3'
+	
+	const text = '今天吃' + result;
+	
+	
+	const resultElement = document.getElementById('result');
+
+       
+    resultElement.innerText = text;
+	
+
+
+    </script>
+</body>
+</html>
